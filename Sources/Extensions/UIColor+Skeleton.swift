@@ -23,19 +23,19 @@ extension UIColor {
     public var complementaryColor: UIColor {
         if #available(iOS 13, tvOS 13, *) {
             return UIColor { traitCollection in
-                return self.isLight() ? self.darker : self.lighter
+                return self.isLight() ? self.lighter : self.darker
             }
         } else {
-            return isLight() ? darker : lighter
+            return isLight() ? lighter : darker
         }
     }
     
     public var lighter: UIColor {
-        return adjust(by: 1.35)
+        return adjust(by: 1.05)
     }
     
     public var darker: UIColor {
-        return adjust(by: 0.94)
+        return adjust(by: 0.95)
     }
     
     func adjust(by percent: CGFloat) -> UIColor {
@@ -72,16 +72,18 @@ public extension UIColor {
     static var silver       = UIColor(0xbdc3c7)
     static var asbestos     = UIColor(0x7f8c8d)
 
+    static var loadingGray = UIColor(0xdedede) // NEW for PicCollage
+
     static var skeletonDefault: UIColor {
         if #available(iOS 13, tvOS 13, *) {
             return UIColor { traitCollection in
                 switch traitCollection.userInterfaceStyle {
-                case .dark: return .darkClouds
-                default: return .clouds
+                case .dark: return .loadingGray
+                default: return .loadingGray
                 }
             }
         } else {
-            return .clouds
+            return .loadingGray
         }
     }
 }
